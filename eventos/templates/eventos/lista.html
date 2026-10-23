@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+{% block titulo %}Eventos{% endblock %}
+{% block contenido %}
+	<h1>Eventos</h1>
+	{% if eventos %}
+		<div class="rejilla">
+			{% for evento in eventos %}
+				<article class="tarjeta">
+					<h2>{{ evento.nombre }}</h2>
+					<p class="meta">{{ evento.fecha }} · {{ evento.lugar }}</p>
+					<a class="boton" href="{% url 'eventos:detalle' evento.id %}">Ver detalle</a>
+				</article>
+			{% endfor %}
+		</div>
+	{% else %}
+		<p>Todavía no hay eventos registrados.</p>
+	{% endif %}
+{% endblock %}

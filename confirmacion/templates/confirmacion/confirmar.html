@@ -1,0 +1,34 @@
+{% extends "core/base.html" %}
+{% block titulo %}Confirmar asistencia{% endblock %}
+{% block contenido %}
+<h1>Confirmar asistencia</h1>
+<p>Escribe tu cédula para ver a qué eventos estás invitado.</p>
+
+<form method="post" class="formulario">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit" class="boton">Confirmar</button>
+</form>
+
+{% if invitaciones is not None %}
+    {% if invitaciones %}
+        <section class="resultado">
+            <div class="persona">
+                <h2>Nombres: {{ invitaciones.0.nombre }}</h2>
+                <p class="meta">Cédula (CC): {{ invitaciones.0.cedula }}</p>
+            </div>
+            {% for invitacion in invitaciones %}
+                <article class="tarjeta">
+                    <h3>{{ invitacion.evento.nombre }}</h3>
+                    <p class="meta">
+                        {{ invitacion.evento.fecha }} a las {{ invitacion.evento.hora|time:"H:i" }}
+                        · {{ invitacion.evento.lugar }}
+                    </p>
+                </article>
+            {% endfor %}
+        </section>
+    {% else %}
+        <p class="aviso">No está invitado a ningún evento</p>
+    {% endif %}
+{% endif %}
+{% endblock %}

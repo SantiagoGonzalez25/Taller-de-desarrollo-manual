@@ -1,0 +1,279 @@
+/* Mobile-first: lo que no está dentro de un @media es el diseño de 360 px.
+Los @media (min-width) solo AÑADEN cambios para pantallas más anchas. */
+:root {
+    --color-principal: #1d4ed8;
+    --color-oscuro: #1e3a8a;
+    --color-fondo: #f3f4f6;
+    --color-tarjeta: #ffffff;
+    --color-texto: #1f2937;
+    --color-suave: #6b7280;
+    --color-borde: #d1d5db;
+    --color-error: #b91c1c;
+    --radio: 0.5rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+    line-height: 1.5;
+    color: var(--color-texto);
+    background: var(--color-fondo);
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem;
+}
+
+h2,
+h3 {
+    font-size: 1.15rem;
+    margin: 0 0 0.25rem;
+}
+
+a {
+    color: var(--color-principal);
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.contenido {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+/* Cabecera y menú */
+.cabecera {
+    background: var(--color-oscuro);
+}
+
+.cabecera .contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.marca {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.menu a {
+    color: #dbeafe;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.pie {
+    padding: 1rem;
+    color: var(--color-suave);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.rejilla {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.tarjeta {
+    background: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    padding: 1rem;
+    overflow-wrap: anywhere;
+}
+
+.meta {
+    margin: 0 0 1rem;
+    color: var(--color-suave);
+}
+
+
+.boton {
+    display: block;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.6rem 1rem;
+    border: 0;
+    border-radius: var(--radio);
+    background: var(--color-principal);
+    color: #ffffff;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background: var(--color-oscuro);
+}
+
+/* Detalle del evento */
+.detalle {
+    background: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    padding: 1rem;
+    overflow-wrap: anywhere;
+}
+
+.datos {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0 0 1rem;
+}
+
+.datos dt {
+    margin-top: 0.75rem;
+    color: var(--color-suave);
+    font-size: 0.875rem;
+}
+
+.datos dd {
+    margin: 0;
+}
+
+/*lo adaptamos a pantallas más anchas*/
+/* Tableta: 768 px o más */
+@media (min-width: 768px) {
+    .contenedor {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.875rem;
+    }
+
+    .cabecera .contenedor {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .rejilla {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .boton {
+        display: inline-block;
+        width: auto;
+    }
+
+    .datos {
+        grid-template-columns: 8rem 1fr;
+    }
+
+    .datos dt,
+    .datos dd {
+        margin-top: 0.5rem;
+    }
+}
+
+/* Escritorio: 1024 px o más */
+@media (min-width: 1024px) {
+    .rejilla {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .detalle {
+        padding: 1.5rem;
+    }
+}
+
+/* Formulario de confirmación */
+.formulario {
+    margin-bottom: 1.5rem;
+}
+
+.formulario p {
+    margin: 0 0 1rem;
+}
+
+.formulario label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.formulario input {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    font-size: 1rem;
+    /* 16 px evita el zoom automático en iPhone */
+}
+
+.errorlist {
+    margin: 0 0 0.5rem;
+    padding: 0;
+    list-style: none;
+    color: var(--color-error);
+}
+
+/* Resultado de la confirmación */
+.resultado {
+    display: grid;
+    gap: 1rem;
+}
+
+.aviso {
+    padding: 1rem;
+    border: 1px solid var(--color-error);
+    border-radius: var(--radio);
+    background: #fef2f2;
+    color: var(--color-error);
+    font-weight: 600;
+}
+
+/* Tableta y escritorio: formulario y resultados */
+@media (min-width: 768px) {
+    .formulario {
+        max-width: 28rem;
+    }
+
+    .resultado {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resultado .persona {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .resultado {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

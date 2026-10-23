@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+{% block titulo %}{{ evento.nombre }}{% endblock %}
+{% block contenido %}
+	<article class="detalle">
+		<h1>{{ evento.nombre }}</h1>
+		<dl class="datos">
+			<dt>Fecha</dt>
+			<dd>{{ evento.fecha }}</dd>
+			<dt>Hora</dt>
+			<dd>{{ evento.hora|time:"H:i" }}</dd>
+			<dt>Lugar</dt>
+			<dd>{{ evento.lugar }}</dd>
+			<dt>Invitados</dt>
+			<dd>{{ evento.invitados.count }}</dd>
+		</dl>
+		{% if evento.descripcion %}
+			<p>{{ evento.descripcion|linebreaksbr }}</p>
+		{% endif %}
+		<a class="boton" href="{% url 'eventos:lista' %}">Volver a la lista</a>
+	</article>
+{% endblock %}
